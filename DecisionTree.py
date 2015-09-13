@@ -12,8 +12,6 @@ testdata = loadtxt('testing.csv',usecols=range(9),dtype=int)
 testLabel = loadtxt('testing.csv',usecols=(range(9,10)),dtype=int)
 feaname = ["#0","#1","#2","#3","#4","#5","#6","#7","#8"]
 
-args = mean(traindata,axis = 0)
-
 class Node:
     count=0
     nodeList=set()
@@ -95,7 +93,6 @@ def buildTree(traindata,trainlabel):
     # the type is the same, so stop classify
     if classList.count(classList[0]) == len(classList):
         return classList[0]
-
     curbestixd,cursplitF=chooseBestSplitNode(traindata,trainlabel)
     if curbestixd in node.nodeAttributeidx:
         node.nodeAttributeidx.remove(curbestixd)
@@ -103,9 +100,9 @@ def buildTree(traindata,trainlabel):
     node.nodeAidxSplitValue[curbestixd]= cursplitF
     if curnode == (-1,-1): return None
     else:
-        print(curbestixd,cursplitF)
+        #print(curbestixd,cursplitF)
         cur_feaname = feaname[curbestixd]
-        print cur_feaname
+        #print cur_feaname
         nodedict = {cur_feaname:{}}
 
         node.count += 1
@@ -120,34 +117,47 @@ def buildTree(traindata,trainlabel):
         curRightdataSet = traindata[curRightIdx]
         curRightdataLabel = trainlabel[curRightIdx]
     nodedict[cur_feaname]["leftNode"] = buildTree(curLeftdataSet,curLeftdataLabel)
-    print("l")
     nodedict[cur_feaname]["RightNode"] = buildTree(curRightdataSet,curRightdataLabel)
-    print("r")
     return nodedict
-
-
 
 def classify(mytree,testdata):
     if type(mytree).__name__ != 'dict':
         return mytree
-    fea_name = mytree.keys()[0] #get the name of first feature
-    fea_idx = feaname.index(fea_name) #the index of feature 'fea_name'
+    fea_name = mytree.keys()[0]
+    fea_idx = feaname.index(fea_name)
     val = testdata[fea_idx]
     nextbranch = mytree[fea_name]
 
-    #judge the current value > or < the pivot (average)
     if val>node.nodeAidxSplitValue[fea_idx]:
         nextbranch = nextbranch["RightNode"]
     else:
         nextbranch = nextbranch["leftNode"]
     return classify(nextbranch,testdata)
 
+def prone (validatingdata,validatingLabel,mytree):
 
+    node.nodeAttributeidx = [0,1,2,3,4,5,6,7,8]
+    for idx in node.nodeAttributeidx:
+        node.nodeAttributeidx = [0,1,2,3,4,5,6,7,8]
+        node.nodeAttributeidx.remove(idx)
+        proneTree = buildTree(traindata,trainlabel)
+        rightValueCount=0
+        for idx in range(20):
+
+            test = validatingdata[idx]
+            x = classify(mytree,test)
+            if (x == validatingLabel[idx]):
+                rightValueCount+=1
+
+        print rightValueCount
+    return
 
 
 mytree=buildTree(traindata,trainlabel)
+
 print(mytree)
-print(node.nodeList)
+
+#print(node.nodeList)
 a=0
 b=0
 c=0
@@ -176,3 +186,4 @@ for idx in range(20):
         c+=1
 
 print c
+prone(validatingdata,validatingLabel,mytree)
