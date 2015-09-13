@@ -145,40 +145,6 @@ def classify(mytree,testdata):
 
 
 
-
-
-
-
-
-
-
-#testcode
-curfeatidx,curSplitFeat= chooseBestSplitNode(traindata,trainlabel)
-print(curfeatidx,curSplitFeat)
-firstLeftIdx,firstRightIdx=splitdata(traindata,curfeatidx,curSplitFeat)
-firstLeftData = traindata[firstLeftIdx]
-#print(trainlabel[firstLeftIdx])
-#print(trainlabel[firstRightIdx])
-#print(len(trainlabel[firstLeftIdx]))
-#print(len(trainlabel[firstRightIdx]))
-
-sedlfeatidx,sedlSplitFeat= chooseBestSplitNode(traindata[firstLeftIdx],trainlabel[firstLeftIdx])
-print(sedlfeatidx,sedlSplitFeat)
-secLeftIdx,secRIdx = splitdata(traindata[firstLeftIdx],sedlfeatidx,sedlSplitFeat)
-#print(len(secLeftIdx),len(secRIdx))
-#print(secLeftIdx,secRIdx)
-#node.nodeAttributeidx.remove(2)
-#del node.nodeAttributeidx[2]
-sedrfeatidx,sedrSplitFeat= chooseBestSplitNode(traindata[firstRightIdx],trainlabel[firstRightIdx])
-print(sedrfeatidx,sedrSplitFeat)
-#secondLeftData =firstLeftData[secLeftIdx]
-
-#buildTree(traindata,trainlabel)
-
-#node.nodeAttributeidx.remove(8)
-
-
-
 mytree=buildTree(traindata,trainlabel)
 print(mytree)
 print(node.nodeList)
