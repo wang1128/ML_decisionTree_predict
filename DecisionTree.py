@@ -136,7 +136,7 @@ def classify(myTree,testdata):
 
 def countAcc (data,label,myTree):
     countRight = 0
-    for idx in range(20):
+    for idx in range(len(data)):
         t = data[idx]
         x = classify(myTree,t)
         if (x == label[idx]):
@@ -179,8 +179,8 @@ def main():
     myTree=buildTree(traindata,trainlabel)
     pruneTree = prune(validatingdata,validatingLabel,myTree)
     testAccValue=countAcc(testdata,testLabel,pruneTree)
-    print(pruneTree)
-    print(testAccValue)
+    #print(pruneTree)
+    print(testAccValue) #It calculate how many of the classified data is the right ones.
     testAccRate = 0.00
     testAccRate = testAccValue.__float__()/len(testLabel).__float__()
 
