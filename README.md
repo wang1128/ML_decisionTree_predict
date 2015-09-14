@@ -17,7 +17,7 @@ validating.csv
  - The prune() function is to prune the tree by using the validating data
  - To run the program, you need to bulid a tree. For examples: myTree=buildTree(traindata,trainlabel)
  - Then use prune() to prune the tree. For instance: pruneTree = prune(validatingdata,validatingLabel,myTree)
- - Finally, use countAcc()to count the accuracy
+ - Finally, use countAcc() to count the accuracy
  
 ##Requirements:
  - Python 2.7
