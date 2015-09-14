@@ -18,6 +18,7 @@ validating.csv
  - To run the program, you need to bulid a tree. For examples: myTree=buildTree(traindata,trainlabel)
  - Then use prune() to prune the tree. For instance: pruneTree = prune(validatingdata,validatingLabel,myTree)
  - Finally, use countAcc() to count the accuracy
+ - Run the program directlly, you could get the accurancy of decison tree by testing the data.
  
 ##Requirements:
  - Python 2.7
