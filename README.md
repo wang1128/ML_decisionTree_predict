@@ -1,4 +1,4 @@
-# Penghao Wang homework 1
+# Penghao Wang
 ##Goals
 The program is written in Python 2.7. The numpy liabray is needed. The main purpose of this project is to build a decision tree by using traindata.csv and prune the tree by
 validating.csv
